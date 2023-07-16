@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cookie Consent</title>
+	</head>
+	<body>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Poppins', sans-serif;
+			}
+			body {
+				background: #000000;
+			}
+			.cookieContainer {
+				position: absolute;
+				bottom: 30px;
+				left: 30px;
+				max-width: 365px;
+				background: #fff;
+				padding: 25px 25px 30px 25px;
+				border-radius: 15px;
+				box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.15);
+				text-align: center;
+			}
+			.cookieContainer.hide {
+				opacity: 0;
+				pointer-events: none;
+				transform: scale(0.8);
+				transition: all 0.3s ease;
+			}
+			::selection {
+				color: #fff;
+				background: #fcba7f;
+			}
+			.cookieContainer img {
+				max-width: 90px;
+			}
+			.content header {
+				font-size: 25px;
+				font-weight: 600;
+			}
+			.content {
+				margin-top: 10px;
+			}
+			.content p {
+				color: #858585;
+				margin: 5px 0 20px 0;
+			}
+			.content .buttons {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.buttons button {
+				padding: 10px 20px;
+				border: none;
+				outline: none;
+				color: #fff;
+				font-size: 16px;
+				font-weight: 500;
+				border-radius: 5px;
+				background: #000000;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+			.buttons button:hover {
+				transform: scale(0.97);
+			}
+			.buttons .item {
+				margin: 0 10px;
+			}
+			.buttons a {
+				color: #000000;
+			}
+		</style>
+		<div class="cookieContainer">
+			<img src="cookie.png" alt="cookie image" />
+			<div class="content">
+				<header>Cookies Consent</header>
+				<p>Este site usa cookies para garantir que tenha a melhor experiência a utilizar o nosso site.</p>
+				<div class="buttons">
+					<button class="item">Quero continuar</button>
+					<a href="#" class="item">Saber mais</a>
+				</div>
+			</div>
+		</div>
+		<script>
+			
+			// Variables and HTML Elements
+const cookieBox = document.querySelector('.cookieContainer');
+const cookieBtn = document.querySelector('button');
+const checkCookie = document.cookie.indexOf("MyCookie=FLAGCOOKIE") //check if cookie is set
+
+// usar um ternario em que se o valor for igual a -1 vai me indicar que a string não existe e como tal eu vou mostrar o conteúdo, caso contrário não mostro mais
+checkCookie === -1 ? cookieBox.classList.remove('hide') : cookieBox.classList.add('hide');
+
+
+/* checkCookie !=== -1 ? cookieBox.classList.add('hide') : cookieBox.classList.remove('hide'); -> é o mesmo que o de cima, mas com uma lógica contrária -> se o cookie existir, add o hide, senão remove */
+
+
+
+			// Functions
+
+
+			//criar a minha cookie
+const setCookie = () => {
+	//setting the cookie para um determinado periodo
+	document.cookie = 'MyCookie=FLAGCOOKIE; expires=Thu, 22 Jun 2023 00:00:00 UTC; path=/';
+
+if(document.cookie) {
+	//fazer desaparecer o cookie
+	cookieBox.classList.add('hide');
+} else{
+	// lançar erro
+	alert("Não foi possível criar a cookie");
+}
+
+};
+
+/* const hideCookieBox = () => {
+	cookieBox.classList.add('hide');
+} */
+
+			// fazer desaparecer o container 
+
+
+
+			// Event Listeners
+	cookieBtn.addEventListener('click', setCookie);
+
+		</script>
+	</body>
+</html>
